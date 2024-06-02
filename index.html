@@ -549,7 +549,7 @@
     <h3 class="sub-heading"> order now </h3>
     <h1 class="heading"> free and fast </h1>
 
-    <form action="db.php" method="post">
+    <form id="orderForm">
 
         <div class="inputBox">
             <div class="input">
@@ -568,17 +568,17 @@
             </div>
             <div class="input">
                 <span>additional food</span>
-                <input type="test" name="extra" placeholder="extra with food">
+                <input type="text" name="extra" placeholder="extra with food">
             </div>
         </div>
         <div class="inputBox">
             <div class="input">
-                <span>how musch</span>
+                <span>how much</span>
                 <input type="number" name="orders" placeholder="how many orders">
             </div>
             <div class="input">
                 <span>date and time</span>
-                <input type="datetime-local">
+                <input type="datetime-local" name="datetime">
             </div>
         </div>
         <div class="inputBox">
@@ -591,13 +591,32 @@
                 <textarea name="message" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
             </div>
         </div>
-
-        <input type="submit" value="order now" class="btn">
-
+    
+        <input type="submit" value="order now" class="btn" onclick="submitForm()">
     </form>
-
+    
+    <script>
+        function submitForm() {
+            var form = document.getElementById('orderForm');
+            var formData = new FormData(form);
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "db.php", true);
+            xhr.send(formData);
+            
+            // Optionally, you can handle the response from db.php here
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Success! You can do something here if needed.
+                    alert("Order placed successfully!");
+                } else {
+                    // Handle errors here
+                    alert("Error placing order. Please try again later.");
+                }
+            };
+        }
+    </script>
 </section>
-
 <!-- order section ends -->
 
 <!-- footer section starts  -->
@@ -654,29 +673,7 @@
 <div class="loader-container">
     <img src="images/loader.gif" alt="">
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
 
