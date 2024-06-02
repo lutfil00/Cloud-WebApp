@@ -20,7 +20,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": ["https://purple-tree-082669100.5.azurestaticapps.net","https://purple-tree-082669100.5.azurestaticapps.net/index.php"],
+        "origins": ["https://purple-tree-082669100.5.azurestaticapps.net"],
         "allow-credentials": false
       },
       "authentication": {
@@ -34,7 +34,7 @@
       "permissions": [
         {
           "actions": ["create", "read", "update", "delete"],
-          "role": "anonymous"
+          "role": "admin"
         }
       ]
     }
