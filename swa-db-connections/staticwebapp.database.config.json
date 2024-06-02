@@ -20,7 +20,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": ["https://purple-tree-082669100.5.azurestaticapps.net"],
+        "origins": ["https://purple-tree-082669100.5.azurestaticapps.net","https://purple-tree-082669100.5.azurestaticapps.net/index.php"],
         "allow-credentials": false
       },
       "authentication": {
