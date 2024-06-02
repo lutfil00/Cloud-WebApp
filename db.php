@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 $serverName = "cloudprojectunikl.database.windows.net"; // update me
 $connectionOptions = array(
     "Database" => "Food system", // update me
