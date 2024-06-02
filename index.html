@@ -549,7 +549,7 @@
     <h3 class="sub-heading"> order now </h3>
     <h1 class="heading"> free and fast </h1>
 
-    <form id="orderForm" action="index.php" method="update">
+    <form id="orderForm">
 
         <div class="inputBox">
             <div class="input">
@@ -655,6 +655,39 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
+<script>
+    // Handle form submission
+    document.getElementById('order-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the default form submission
 
+        // Get form values
+        var name = document.getElementById('name').value;
+        var number = document.getElementById('number').value;
+        var orderDetails = document.getElementById('order-details').value;
+        var additionalFood = document.getElementById('additional-food').value;
+        var quantity = document.getElementById('quantity').value;
+        var address = document.getElementById('address').value;
+        var message = document.getElementById('message').value;
+
+        // Add a new document with a generated ID
+        db.collection("orders").add({
+            name: name,
+            number: number,
+            orderDetails: orderDetails,
+            additionalFood: additionalFood,
+            quantity: quantity,
+            address: address,
+            message: message
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            alert("Order submitted successfully!");
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+            alert("There was an error submitting your order. Please try again.");
+        });
+    });
+</script>
 </body>
 </html>
