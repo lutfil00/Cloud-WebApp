@@ -20,7 +20,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": ["tcp:cloudprojectunikl.database.windows.net,1433"],
+        "origins": ["https://purple-tree-082669100.5.azurestaticapps.net"],
         "allow-credentials": false
       },
       "authentication": {
@@ -30,7 +30,7 @@
   },
   "entities": {
     "Person": {
-      "source": "dbo.Food system",
+      "source": "[dbo.Food system]",
       "permissions": [
         {
           "actions": ["create", "read", "update", "delete", "post"],
