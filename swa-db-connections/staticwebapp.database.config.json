@@ -5,7 +5,7 @@
     "options": {
       "set-session-context": false 
     },
-    "connection-string": "@env('DATABASE_CONNECTION_STRING')"
+    "connection-string": "Server=tcp:cloudprojectunikl.database.windows.net,1433;Initial Catalog=Food system;Persist Security Info=False;User ID=CloudSA5e50fd81;Password=L123456789.;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   },
   "runtime": {
     "rest": {
@@ -20,7 +20,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": ["https://purple-tree-082669100.5.azurestaticapps.net"],
+        "origins": [],
         "allow-credentials": false
       },
       "authentication": {
@@ -29,11 +29,15 @@
     }
   },
   "entities": {
-    "Person": {
-      "source": "[dbo.Food system",
+    "Food": {
+      "source": "[dbo.Food system]",
       "permissions": [
         {
-          "actions": ["create", "read", "update", "delete"],
+          "actions": ["create", "read", "update", "post"],
+          "role": "anonymous"
+        },
+        {
+          "actions": ["*"],
           "role": "admin"
         }
       ]
