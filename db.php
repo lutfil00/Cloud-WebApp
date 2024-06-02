@@ -1,13 +1,8 @@
 <?php
 ini_set('display_errors', 1);
+$connectionInfo = array("UID" => "CloudSA5e50fd81", "pwd" => "{your_password_here}", "Database" => "Food system", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:cloudprojectunikl.database.windows.net,1433";
-$connectionOptions = array(
-    "Database" => "Food system", 
-    "Uid" => "CloudSA5e50fd81", 
-    "PWD" => "L123456789." 
-    );
-//Establishes the connection
-$conn = sqlsrv_connect($serverName, $connectionOptions);
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 // Check connection
 if ($conn === false) {
