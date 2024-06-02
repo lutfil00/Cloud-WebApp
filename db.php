@@ -1,23 +1,19 @@
 <?php
-// Enable error reporting for debugging
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
+$serverName = "cloudprojectunikl.database.windows.net,1433";
+$connectionOptions = array(
+    "Database" => "Food system", 
+    "Uid" => "CloudSA5e50fd81", 
+    "PWD" => "L123456789." 
+    );
+//Establishes the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
-// Database connection parameters
-$host = "cloudprojectunikl.database.windows.net"; // Server name
-$username = "CloudSA5e50fd81"; // Username
-$password = "L123456789."; // Password
-$db_name = "Food system"; // Database name
-
-// Create a new mysqli instance
-$conn = mysqli_init();
-
-// Attempt to connect
-if (!mysqli_real_connect($conn, $host, $username, $password, $db_name)) {
-    // Connection failed, output the error
-    echo "Connection error: " . mysqli_connect_error();
-    exit();
-}
+// Check connection
+if ($conn === false) {
+    // Handle connection errors
+    die("Connection could not be established.<br />" . print_r(sqlsrv_errors(), true));
+} 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['name'];
