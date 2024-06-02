@@ -1,22 +1,12 @@
 <?php
-// Define your connection information
-$uid = "CloudSA5e50fd81";
-$pwd = "L123456789.";
-$dbName = "Food system";
-$serverName = "tcp:cloudprojectunikl.database.windows.net,1433";
-
-// Connection information array
-$connectionInfo = array(
-    "UID" => $uid,
-    "pwd" => $pwd,
-    "Database" => $dbName,
-    "LoginTimeout" => 30,
-    "Encrypt" => 1,
-    "TrustServerCertificate" => 0
-);
-
-// Establish connection
-$conn = sqlsrv_connect($serverName, $connectionInfo);
+$serverName = "cloudprojectunikl.database.windows.net"; // update me
+$connectionOptions = array(
+    "Database" => "Food system", // update me
+    "Uid" => "CloudSA5e50fd81", // update me
+    "PWD" => "L123456789." // update me
+    );
+//Establishes the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
 // Check connection
 if ($conn === false) {
