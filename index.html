@@ -549,7 +549,7 @@
     <h3 class="sub-heading"> order now </h3>
     <h1 class="heading"> free and fast </h1>
 
-    <form id="orderForm">
+    <form id="orderForm" action="db.php" method="POST">
 
         <div class="inputBox">
             <div class="input">
@@ -594,28 +594,7 @@
     
         <input type="button" value="order now" class="btn" onclick="submitForm()">
     </form>
-    
-    <script>
-        function submitForm() {
-            var form = document.getElementById('orderForm');
-            var formData = new FormData(form);
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "db.php", true);
-            xhr.send(formData);
-            
-            // Optionally, you can handle the response from db.php here
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Success! You can do something here if needed.
-                    alert("Order placed successfully!");
-                } else {
-                    // Handle errors here
-                    alert("Error placing order. Please try again later. Error: " + xhr.responseText);
-                }
-            };
-        }
-    </script>
+
 </section>
 <!-- order section ends -->
 
