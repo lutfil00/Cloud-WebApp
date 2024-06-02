@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-$serverName = "cloudprojectunikl.database.windows.net,1433";
+$serverName = "tcp:cloudprojectunikl.database.windows.net,1433";
 $connectionOptions = array(
     "Database" => "Food system", 
     "Uid" => "CloudSA5e50fd81", 
