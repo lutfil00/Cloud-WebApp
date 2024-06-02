@@ -30,7 +30,7 @@
   },
   "entities": {
     "Person": {
-      "source": "dbo.Food order",
+      "source": "dbo.Food system",
       "permissions": [
         {
           "actions": ["create", "read", "update", "delete", "post"],
