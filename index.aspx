@@ -25,7 +25,7 @@
 
     <nav class="navbar">
         <a class="active" href="#home">home</a>
-        <a href="#dishes">dishes</a>
+        <a href="#dishes">dishess</a>
         <a href="#about">about</a>
         <a href="#menu">menu</a>
         <a href="#review">review</a>
