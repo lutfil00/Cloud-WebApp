@@ -1,39 +1,49 @@
 <?php
-ini_set('display_errors', 1);
-$connectionInfo = array("UID" => "azure", "pwd" => "6#vWHD_$", "Database" => "localdb", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "127.0.0.1:50390";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
 
-// Check connection
-if ($conn === false) {
-    // Handle connection errors
-    die("Connection could not be established.<br />" . print_r(sqlsrv_errors(), true));
-} 
+$port = $_SERVER['WEBSITE_MYSQL_PORT'];
+$server = "localhost:$port";
+$user = "azure";
+$password = "6#vWHD_$";
+$database = "localdb";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['name'];
-    $number = $_POST['number'];
-    $food = $_POST['food'];
-    $extra = $_POST['extra'];
-    $orders = $_POST['orders'];
-    $address = $_POST['address'];
-    $message = $_POST['message'];
+$connection = mysqli_connect($server, $user, $password, $database);
 
-    $sql = "INSERT INTO order (name, number, food, extra, orders, address, message) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $params = array($username, $number, $food, $extra, $orders, $address, $message);
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+    // Get the raw input data
+    $input = file_get_contents('php://input');
+    // Decode the JSON data
+    $data = json_decode($input, true);
+
+    $username = $data['name'];
+    $number = $data['number'];
+    $food = $data['food'];
+    $extra = $data['extra'];
+    $orders = $data['orders'];
+    $address = $data['address'];
+    $message = $data['message'];
+
+    $sql = "INSERT INTO orders (name, number, food, extra, orders, address, message) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($connection, $sql);
     
-    $stmt = sqlsrv_query($conn, $sql, $params);
-
     if ($stmt === false) {
-        echo "Error in statement execution.<br />";
-        die(print_r(sqlsrv_errors(), true));
-    } else {
-        echo "Data inserted successfully!";
+        die("Prepare failed: " . mysqli_error($connection));
     }
 
-    sqlsrv_free_stmt($stmt);
+    mysqli_stmt_bind_param($stmt, 'sssssss', $username, $number, $food, $extra, $orders, $address, $message);
+
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Data inserted successfully!";
+    } else {
+        echo "Error: " . mysqli_stmt_error($stmt);
+    }
+
+    mysqli_stmt_close($stmt);
 }
 
 // Close the connection
-sqlsrv_close($conn);
+mysqli_close($connection);
 ?>

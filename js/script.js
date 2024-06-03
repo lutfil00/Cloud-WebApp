@@ -85,24 +85,5 @@ function loader(){
 function fadeOut(){
   setInterval(loader, 3000);
 }
-function submitForm() {
-  var form = document.getElementById('orderForm');
-  var formData = new FormData(form);
-  
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "index.php", true);
-  xhr.send(formData);
-  
-  // Optionally, you can handle the response from db.php here
-  xhr.onload = function() {
-      if (xhr.status === 200) {
-          // Success! You can do something here if needed.
-          alert("Order placed successfully!");
-      } else {
-          // Handle errors here
-          alert("Error placing order. Please try again later. Error: "+ xhr.responseText);
-      }
-  };
-}
 
 window.onload = fadeOut;

@@ -549,7 +549,7 @@
     <h3 class="sub-heading"> order now </h3>
     <h1 class="heading"> free and fast </h1>
 
-    <form id="orderForm" action="index.php" method="insert">
+    <form id="orderForm">
 
         <div class="inputBox">
             <div class="input">
@@ -592,7 +592,7 @@
             </div>
         </div>
     
-        <input type="submit" value="order now" class="btn">
+        <input type="submit" value="order now" class="btn" onclick="submitform">
     </form>
 
 </section>
@@ -655,6 +655,34 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
+<script>
+document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
 
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Convert FormData to a plain object
+            const formDataObj = {};
+            formData.forEach((value, key) => {
+                formDataObj[key] = value;
+            });
+
+            fetch('index.php', {
+                method: 'PUT', // Use the PUT method
+                headers: {
+                    'Content-Type': 'application/json' // Set the content type to JSON
+                },
+                body: JSON.stringify(formDataObj) // Convert the form data to JSON
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // Handle the response from the server
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+</script>
 </body>
 </html>
