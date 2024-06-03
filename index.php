@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
-$connectionInfo = array("UID" => "CloudSA5e50fd81", "pwd" => "L123456789.", "Database" => "Food system", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:cloudprojectunikl.database.windows.net,1433";
+$connectionInfo = array("UID" => "azure", "pwd" => "6#vWHD_$", "Database" => "localdb", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "127.0.0.1:50390";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 // Check connection
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST['address'];
     $message = $_POST['message'];
 
-    $sql = "INSERT INTO dbo.order_query (name, number, food, extra, orders, address, message) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO order (name, number, food, extra, orders, address, message) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $params = array($username, $number, $food, $extra, $orders, $address, $message);
     
     $stmt = sqlsrv_query($conn, $sql, $params);
