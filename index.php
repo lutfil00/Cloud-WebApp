@@ -12,38 +12,30 @@ if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "PUT") {
-    // Get the raw input data
-    $input = file_get_contents('php://input');
-    // Decode the JSON data
-    $data = json_decode($input, true);
+if ($_SERVER["REQUEST_METHOD"] == "put") {
+    $username = $_POST['name'];
+    $number = $_POST['number'];
+    $food = $_POST['food'];
+    $extra = $_POST['extra'];
+    $orders = $_POST['orders'];
+    $address = $_POST['address'];
+    $message = $_POST['message'];
 
-    $username = $data['name'];
-    $number = $data['number'];
-    $food = $data['food'];
-    $extra = $data['extra'];
-    $orders = $data['orders'];
-    $address = $data['address'];
-    $message = $data['message'];
-
-    $sql = "INSERT INTO orders (name, number, food, extra, orders, address, message) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($connection, $sql);
+    $sql = "INSERT INTO order (name, number, food, extra, orders, address, message) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $params = array($username, $number, $food, $extra, $orders, $address, $message);
     
+    $stmt = sqlsrv_query($conn, $sql, $params);
+
     if ($stmt === false) {
-        die("Prepare failed: " . mysqli_error($connection));
-    }
-
-    mysqli_stmt_bind_param($stmt, 'sssssss', $username, $number, $food, $extra, $orders, $address, $message);
-
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Data inserted successfully!";
+        echo "Error in statement execution.<br />";
+        die(print_r(sqlsrv_errors(), true));
     } else {
-        echo "Error: " . mysqli_stmt_error($stmt);
+        echo "Data inserted successfully!";
     }
 
-    mysqli_stmt_close($stmt);
+    sqlsrv_free_stmt($stmt);
 }
 
 // Close the connection
-mysqli_close($connection);
+sqlsrv_close($conn);
 ?>
