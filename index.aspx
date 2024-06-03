@@ -73,7 +73,7 @@
 
             <div class="swiper-slide slide">
                 <div class="content">
-                    <span>our special dish</span>
+                    <span>our special dishes</span>
                     <h3>fried chicken</h3>
                     <p>the best ever fried chicken of the city </p>
                     <a href="#" class="btn">order now</a>
