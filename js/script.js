@@ -56,15 +56,8 @@ var swiper = new Swiper(".home-slider", {
 
 document.getElementById('orderForm').addEventListener('submit', function(event) {
   event.preventDefault(); // Prevent the form from submitting immediately
-
-  // Show the modal
-  document.getElementById('orderModal').style.display = 'block';
-
-  // Close modal when clicking the close button
-  document.getElementById('closeModal').onclick = function() {
-      document.getElementById('orderModal').style.display = 'none';
-      document.getElementById('orderForm').submit(); // Submit the form after closing the modal
-  }
+  alert('Your order has been placed');
+  this.submit(); // Submit the form after the alert is shown
 });
 
 var swiper = new Swiper(".review-slider", {
