@@ -25,7 +25,7 @@
 
     <nav class="navbar">
         <a class="active" href="#home">home</a>
-        <a href="#dishes">dishess</a>
+        <a href="#dishes">dishes</a>
         <a href="#about">about</a>
         <a href="#menu">menu</a>
         <a href="#review">review</a>
@@ -549,7 +549,7 @@
     <h3 class="sub-heading"> order now </h3>
     <h1 class="heading"> free and fast </h1>
 
-    <form id="orderForm" action="index.php" method="get">
+    <form id="orderForm">
 
         <div class="inputBox">
             <div class="input">
@@ -592,10 +592,17 @@
             </div>
         </div>
     
-        <input type="submit" value="order now" class="btn">
+        <input type="submit" value="order now" class="btn" id="submitBtn">
     </form>
 
 </section>
+
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <p>Your order has been placed</p>
+        <button id="closeModal">Close</button>
+    </div>
+</div>
 <!-- order section ends -->
 
 <!-- footer section starts  -->
