@@ -8,7 +8,7 @@ if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "post") {
+if ($_SERVER["REQUEST_METHOD"] == "put") {
     $username = $_POST['name'];
     $number = $_POST['number'];
     $food = $_POST['food'];
