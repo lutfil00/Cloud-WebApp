@@ -1,12 +1,8 @@
 <?php
 
-$port = $_SERVER['WEBSITE_MYSQL_PORT'];
-$server = "localhost:$port";
-$user = "azure";
-$password = "6#vWHD_$";
-$database = "localdb";
-
-$connection = mysqli_connect($server, $user, $password, $database);
+$connectionInfo = array("UID" => "CloudSA5e50fd81", "pwd" => "L123456789.", "Database" => "Food system", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:cloudprojectunikl.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
